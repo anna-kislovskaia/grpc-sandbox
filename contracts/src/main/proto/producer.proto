@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package producer;
+
+option java_multiple_files = true;
+option java_package = "o3.souse.producer";
+option java_outer_classname = "SoUseProducerService";
+
+service SoUseProducer {
+
+  rpc resolve(ResolveRequest) returns (ResolveResponse) {}
+
+  rpc resolveStream(stream ResolveRequest) returns (stream ResolveResponse) {}
+}
+
+message ResolveRequest {
+  string request_id = 1;
+  repeated string names = 2;
+  repeated Payload payloads = 3;
+}
+
+message Payload {
+  string name = 1;
+  bytes body = 2;
+}
+
+message ResolveResponse {
+  string request_id = 1;
+  repeated Payload payloads = 2;
+}
