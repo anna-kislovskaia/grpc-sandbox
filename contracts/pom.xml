@@ -14,8 +14,8 @@
     </parent>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <io.grpc.version>1.63.0</io.grpc.version>
         <protoc.version>3.17.3</protoc.version>
         <protoc.gen.version>1.63.1</protoc.gen.version>
