@@ -4,18 +4,18 @@
 package o3.souse.producer;
 
 /**
- * Protobuf type {@code producer.ResolveRequest}
+ * Protobuf type {@code producer.ResolveMessage}
  */
-public final class ResolveRequest extends
+public final class ResolveMessage extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:producer.ResolveRequest)
-    ResolveRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:producer.ResolveMessage)
+    ResolveMessageOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use ResolveRequest.newBuilder() to construct.
-  private ResolveRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use ResolveMessage.newBuilder() to construct.
+  private ResolveMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private ResolveRequest() {
+  private ResolveMessage() {
     requestId_ = "";
     names_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     payloads_ = java.util.Collections.emptyList();
@@ -25,7 +25,7 @@ private static final long serialVersionUID = 0L;
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new ResolveRequest();
+    return new ResolveMessage();
   }
 
   @java.lang.Override
@@ -33,7 +33,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private ResolveRequest(
+  private ResolveMessage(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -103,15 +103,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return o3.souse.producer.SoUseProducerService.internal_static_producer_ResolveRequest_descriptor;
+    return o3.souse.producer.SoUseProducerService.internal_static_producer_ResolveMessage_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return o3.souse.producer.SoUseProducerService.internal_static_producer_ResolveRequest_fieldAccessorTable
+    return o3.souse.producer.SoUseProducerService.internal_static_producer_ResolveMessage_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            o3.souse.producer.ResolveRequest.class, o3.souse.producer.ResolveRequest.Builder.class);
+            o3.souse.producer.ResolveMessage.class, o3.souse.producer.ResolveMessage.Builder.class);
   }
 
   public static final int REQUEST_ID_FIELD_NUMBER = 1;
@@ -284,10 +284,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof o3.souse.producer.ResolveRequest)) {
+    if (!(obj instanceof o3.souse.producer.ResolveMessage)) {
       return super.equals(obj);
     }
-    o3.souse.producer.ResolveRequest other = (o3.souse.producer.ResolveRequest) obj;
+    o3.souse.producer.ResolveMessage other = (o3.souse.producer.ResolveMessage) obj;
 
     if (!getRequestId()
         .equals(other.getRequestId())) return false;
@@ -321,69 +321,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static o3.souse.producer.ResolveRequest parseFrom(
+  public static o3.souse.producer.ResolveMessage parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static o3.souse.producer.ResolveRequest parseFrom(
+  public static o3.souse.producer.ResolveMessage parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static o3.souse.producer.ResolveRequest parseFrom(
+  public static o3.souse.producer.ResolveMessage parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static o3.souse.producer.ResolveRequest parseFrom(
+  public static o3.souse.producer.ResolveMessage parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static o3.souse.producer.ResolveRequest parseFrom(byte[] data)
+  public static o3.souse.producer.ResolveMessage parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static o3.souse.producer.ResolveRequest parseFrom(
+  public static o3.souse.producer.ResolveMessage parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static o3.souse.producer.ResolveRequest parseFrom(java.io.InputStream input)
+  public static o3.souse.producer.ResolveMessage parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static o3.souse.producer.ResolveRequest parseFrom(
+  public static o3.souse.producer.ResolveMessage parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static o3.souse.producer.ResolveRequest parseDelimitedFrom(java.io.InputStream input)
+  public static o3.souse.producer.ResolveMessage parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static o3.souse.producer.ResolveRequest parseDelimitedFrom(
+  public static o3.souse.producer.ResolveMessage parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static o3.souse.producer.ResolveRequest parseFrom(
+  public static o3.souse.producer.ResolveMessage parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static o3.souse.producer.ResolveRequest parseFrom(
+  public static o3.souse.producer.ResolveMessage parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -396,7 +396,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(o3.souse.producer.ResolveRequest prototype) {
+  public static Builder newBuilder(o3.souse.producer.ResolveMessage prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -412,26 +412,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code producer.ResolveRequest}
+   * Protobuf type {@code producer.ResolveMessage}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:producer.ResolveRequest)
-      o3.souse.producer.ResolveRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:producer.ResolveMessage)
+      o3.souse.producer.ResolveMessageOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return o3.souse.producer.SoUseProducerService.internal_static_producer_ResolveRequest_descriptor;
+      return o3.souse.producer.SoUseProducerService.internal_static_producer_ResolveMessage_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return o3.souse.producer.SoUseProducerService.internal_static_producer_ResolveRequest_fieldAccessorTable
+      return o3.souse.producer.SoUseProducerService.internal_static_producer_ResolveMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              o3.souse.producer.ResolveRequest.class, o3.souse.producer.ResolveRequest.Builder.class);
+              o3.souse.producer.ResolveMessage.class, o3.souse.producer.ResolveMessage.Builder.class);
     }
 
-    // Construct using o3.souse.producer.ResolveRequest.newBuilder()
+    // Construct using o3.souse.producer.ResolveMessage.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -466,17 +466,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return o3.souse.producer.SoUseProducerService.internal_static_producer_ResolveRequest_descriptor;
+      return o3.souse.producer.SoUseProducerService.internal_static_producer_ResolveMessage_descriptor;
     }
 
     @java.lang.Override
-    public o3.souse.producer.ResolveRequest getDefaultInstanceForType() {
-      return o3.souse.producer.ResolveRequest.getDefaultInstance();
+    public o3.souse.producer.ResolveMessage getDefaultInstanceForType() {
+      return o3.souse.producer.ResolveMessage.getDefaultInstance();
     }
 
     @java.lang.Override
-    public o3.souse.producer.ResolveRequest build() {
-      o3.souse.producer.ResolveRequest result = buildPartial();
+    public o3.souse.producer.ResolveMessage build() {
+      o3.souse.producer.ResolveMessage result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -484,8 +484,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public o3.souse.producer.ResolveRequest buildPartial() {
-      o3.souse.producer.ResolveRequest result = new o3.souse.producer.ResolveRequest(this);
+    public o3.souse.producer.ResolveMessage buildPartial() {
+      o3.souse.producer.ResolveMessage result = new o3.souse.producer.ResolveMessage(this);
       int from_bitField0_ = bitField0_;
       result.requestId_ = requestId_;
       if (((bitField0_ & 0x00000001) != 0)) {
@@ -540,16 +540,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof o3.souse.producer.ResolveRequest) {
-        return mergeFrom((o3.souse.producer.ResolveRequest)other);
+      if (other instanceof o3.souse.producer.ResolveMessage) {
+        return mergeFrom((o3.souse.producer.ResolveMessage)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(o3.souse.producer.ResolveRequest other) {
-      if (other == o3.souse.producer.ResolveRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(o3.souse.producer.ResolveMessage other) {
+      if (other == o3.souse.producer.ResolveMessage.getDefaultInstance()) return this;
       if (!other.getRequestId().isEmpty()) {
         requestId_ = other.requestId_;
         onChanged();
@@ -605,11 +605,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      o3.souse.producer.ResolveRequest parsedMessage = null;
+      o3.souse.producer.ResolveMessage parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (o3.souse.producer.ResolveRequest) e.getUnfinishedMessage();
+        parsedMessage = (o3.souse.producer.ResolveMessage) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -1058,41 +1058,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:producer.ResolveRequest)
+    // @@protoc_insertion_point(builder_scope:producer.ResolveMessage)
   }
 
-  // @@protoc_insertion_point(class_scope:producer.ResolveRequest)
-  private static final o3.souse.producer.ResolveRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:producer.ResolveMessage)
+  private static final o3.souse.producer.ResolveMessage DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new o3.souse.producer.ResolveRequest();
+    DEFAULT_INSTANCE = new o3.souse.producer.ResolveMessage();
   }
 
-  public static o3.souse.producer.ResolveRequest getDefaultInstance() {
+  public static o3.souse.producer.ResolveMessage getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<ResolveRequest>
-      PARSER = new com.google.protobuf.AbstractParser<ResolveRequest>() {
+  private static final com.google.protobuf.Parser<ResolveMessage>
+      PARSER = new com.google.protobuf.AbstractParser<ResolveMessage>() {
     @java.lang.Override
-    public ResolveRequest parsePartialFrom(
+    public ResolveMessage parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ResolveRequest(input, extensionRegistry);
+      return new ResolveMessage(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<ResolveRequest> parser() {
+  public static com.google.protobuf.Parser<ResolveMessage> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<ResolveRequest> getParserForType() {
+  public com.google.protobuf.Parser<ResolveMessage> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public o3.souse.producer.ResolveRequest getDefaultInstanceForType() {
+  public o3.souse.producer.ResolveMessage getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

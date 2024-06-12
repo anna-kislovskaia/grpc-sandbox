@@ -8,12 +8,12 @@ option java_outer_classname = "SoUseProducerService";
 
 service SoUseProducer {
 
-  rpc resolve(ResolveRequest) returns (ResolveResponse) {}
+  rpc resolve(ResolveMessage) returns (ResolveMessage) {}
 
-  rpc resolveStream(stream ResolveRequest) returns (stream ResolveResponse) {}
+  rpc resolveStream(stream ResolveMessage) returns (stream ResolveMessage) {}
 }
 
-message ResolveRequest {
+message ResolveMessage {
   string request_id = 1;
   repeated string names = 2;
   repeated Payload payloads = 3;
@@ -22,9 +22,4 @@ message ResolveRequest {
 message Payload {
   string name = 1;
   bytes body = 2;
-}
-
-message ResolveResponse {
-  string request_id = 1;
-  repeated Payload payloads = 2;
 }

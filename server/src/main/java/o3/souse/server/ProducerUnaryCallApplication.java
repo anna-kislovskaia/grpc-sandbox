@@ -4,11 +4,13 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import o3.souse.producer.ResolveRequest;
-import o3.souse.producer.ResolveResponse;
+import o3.souse.producer.ResolveMessage;
 import o3.souse.producer.SoUseProducerGrpc;
 
 import java.util.concurrent.CountDownLatch;
+
+import static o3.souse.server.SoUseProducerImpl.createXRequest;
+import static o3.souse.server.SoUseProducerImpl.createYRequest;
 
 public class ProducerUnaryCallApplication {
     private static final int port_1 = 8081;
@@ -27,21 +29,12 @@ public class ProducerUnaryCallApplication {
 
         long start = System.nanoTime();
         for (int i = 0; i < count; i++) {
-            ResolveRequest requestX = ResolveRequest.newBuilder()
-                    .setRequestId(String.valueOf(i + 1))
-                    .addNames("x")
-                    .build();
-
-            ResolveResponse responseX = stubX.resolve(requestX);
+            ResolveMessage responseX = stubX.resolve(createXRequest(i));
             if (logEnabled) {
                 System.out.println(responseX);
             }
 
-            ResolveRequest requestY = ResolveRequest.newBuilder()
-                    .addNames("y")
-                    .addPayloads(responseX.getPayloads(0))
-                    .build();
-            ResolveResponse responseY = stubY.resolve(requestY);
+            ResolveMessage responseY = stubY.resolve(createYRequest(responseX));
             if (logEnabled) {
                 System.out.println(responseY);
             }

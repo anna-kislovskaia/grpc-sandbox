@@ -3,20 +3,19 @@ package o3.souse.server;
 import com.google.protobuf.ByteString;
 import io.grpc.stub.StreamObserver;
 import o3.souse.producer.Payload;
-import o3.souse.producer.ResolveRequest;
-import o3.souse.producer.ResolveResponse;
+import o3.souse.producer.ResolveMessage;
 import o3.souse.producer.SoUseProducerGrpc;
 
 public class SoUseProducerImpl extends SoUseProducerGrpc.SoUseProducerImplBase {
     @Override
-    public void resolve(ResolveRequest request, StreamObserver<ResolveResponse> responseObserver) {
+    public void resolve(ResolveMessage request, StreamObserver<ResolveMessage> responseObserver) {
 //        System.out.println("received: " + request);
         doResolve(request, responseObserver);
         responseObserver.onCompleted();
 //        System.out.println("completed");
     }
 
-    private void doResolve(ResolveRequest request, StreamObserver<ResolveResponse> responseObserver) {
+    private void doResolve(ResolveMessage request, StreamObserver<ResolveMessage> responseObserver) {
         for (String name : request.getNamesList()) {
             switch (name) {
                 case "x" -> {
@@ -33,8 +32,8 @@ public class SoUseProducerImpl extends SoUseProducerGrpc.SoUseProducerImplBase {
 
     }
 
-    private ResolveResponse createXResponse(String requestId) {
-        return ResolveResponse.newBuilder()
+    private ResolveMessage createXResponse(String requestId) {
+        return ResolveMessage.newBuilder()
                 .setRequestId(requestId)
                 .addPayloads(Payload.newBuilder()
                         .setName("x")
@@ -43,8 +42,8 @@ public class SoUseProducerImpl extends SoUseProducerGrpc.SoUseProducerImplBase {
                 .build();
     }
 
-    private ResolveResponse createYResponse(String requestId) {
-        return ResolveResponse.newBuilder()
+    private ResolveMessage createYResponse(String requestId) {
+        return ResolveMessage.newBuilder()
                 .setRequestId(requestId)
                 .addPayloads(Payload.newBuilder()
                         .setName("y")
@@ -54,11 +53,11 @@ public class SoUseProducerImpl extends SoUseProducerGrpc.SoUseProducerImplBase {
     }
 
     @Override
-    public StreamObserver<ResolveRequest> resolveStream(StreamObserver<ResolveResponse> responseObserver) {
+    public StreamObserver<ResolveMessage> resolveStream(StreamObserver<ResolveMessage> responseObserver) {
         return new StreamObserver<>() {
             @Override
-            public void onNext(ResolveRequest resolveRequest) {
-                doResolve(resolveRequest, responseObserver);
+            public void onNext(ResolveMessage ResolveMessage) {
+                doResolve(ResolveMessage, responseObserver);
             }
 
             @Override
@@ -72,4 +71,21 @@ public class SoUseProducerImpl extends SoUseProducerGrpc.SoUseProducerImplBase {
             }
         };
     }
+
+    public static ResolveMessage createXRequest(int i) {
+        return ResolveMessage.newBuilder()
+                .setRequestId(String.valueOf(i))
+                .addNames("x")
+                .build();
+    }
+
+    public static ResolveMessage createYRequest(ResolveMessage responseX) {
+        return ResolveMessage.newBuilder()
+                .addNames("y")
+                .setRequestId(responseX.getRequestId())
+                .addPayloads(responseX.getPayloads(0))
+                .build();
+    }
 }
+
+

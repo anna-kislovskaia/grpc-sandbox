@@ -3,8 +3,8 @@
 
 package o3.souse.producer;
 
-public interface ResolveRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:producer.ResolveRequest)
+public interface ResolveMessageOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:producer.ResolveMessage)
     com.google.protobuf.MessageOrBuilder {
 
   /**

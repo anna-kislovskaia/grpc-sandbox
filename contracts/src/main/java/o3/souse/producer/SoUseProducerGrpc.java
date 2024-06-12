@@ -15,29 +15,29 @@ public final class SoUseProducerGrpc {
   public static final java.lang.String SERVICE_NAME = "producer.SoUseProducer";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<o3.souse.producer.ResolveRequest,
-      o3.souse.producer.ResolveResponse> getResolveMethod;
+  private static volatile io.grpc.MethodDescriptor<o3.souse.producer.ResolveMessage,
+      o3.souse.producer.ResolveMessage> getResolveMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "resolve",
-      requestType = o3.souse.producer.ResolveRequest.class,
-      responseType = o3.souse.producer.ResolveResponse.class,
+      requestType = o3.souse.producer.ResolveMessage.class,
+      responseType = o3.souse.producer.ResolveMessage.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<o3.souse.producer.ResolveRequest,
-      o3.souse.producer.ResolveResponse> getResolveMethod() {
-    io.grpc.MethodDescriptor<o3.souse.producer.ResolveRequest, o3.souse.producer.ResolveResponse> getResolveMethod;
+  public static io.grpc.MethodDescriptor<o3.souse.producer.ResolveMessage,
+      o3.souse.producer.ResolveMessage> getResolveMethod() {
+    io.grpc.MethodDescriptor<o3.souse.producer.ResolveMessage, o3.souse.producer.ResolveMessage> getResolveMethod;
     if ((getResolveMethod = SoUseProducerGrpc.getResolveMethod) == null) {
       synchronized (SoUseProducerGrpc.class) {
         if ((getResolveMethod = SoUseProducerGrpc.getResolveMethod) == null) {
           SoUseProducerGrpc.getResolveMethod = getResolveMethod =
-              io.grpc.MethodDescriptor.<o3.souse.producer.ResolveRequest, o3.souse.producer.ResolveResponse>newBuilder()
+              io.grpc.MethodDescriptor.<o3.souse.producer.ResolveMessage, o3.souse.producer.ResolveMessage>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "resolve"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  o3.souse.producer.ResolveRequest.getDefaultInstance()))
+                  o3.souse.producer.ResolveMessage.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  o3.souse.producer.ResolveResponse.getDefaultInstance()))
+                  o3.souse.producer.ResolveMessage.getDefaultInstance()))
               .setSchemaDescriptor(new SoUseProducerMethodDescriptorSupplier("resolve"))
               .build();
         }
@@ -46,29 +46,29 @@ public final class SoUseProducerGrpc {
     return getResolveMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<o3.souse.producer.ResolveRequest,
-      o3.souse.producer.ResolveResponse> getResolveStreamMethod;
+  private static volatile io.grpc.MethodDescriptor<o3.souse.producer.ResolveMessage,
+      o3.souse.producer.ResolveMessage> getResolveStreamMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "resolveStream",
-      requestType = o3.souse.producer.ResolveRequest.class,
-      responseType = o3.souse.producer.ResolveResponse.class,
+      requestType = o3.souse.producer.ResolveMessage.class,
+      responseType = o3.souse.producer.ResolveMessage.class,
       methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-  public static io.grpc.MethodDescriptor<o3.souse.producer.ResolveRequest,
-      o3.souse.producer.ResolveResponse> getResolveStreamMethod() {
-    io.grpc.MethodDescriptor<o3.souse.producer.ResolveRequest, o3.souse.producer.ResolveResponse> getResolveStreamMethod;
+  public static io.grpc.MethodDescriptor<o3.souse.producer.ResolveMessage,
+      o3.souse.producer.ResolveMessage> getResolveStreamMethod() {
+    io.grpc.MethodDescriptor<o3.souse.producer.ResolveMessage, o3.souse.producer.ResolveMessage> getResolveStreamMethod;
     if ((getResolveStreamMethod = SoUseProducerGrpc.getResolveStreamMethod) == null) {
       synchronized (SoUseProducerGrpc.class) {
         if ((getResolveStreamMethod = SoUseProducerGrpc.getResolveStreamMethod) == null) {
           SoUseProducerGrpc.getResolveStreamMethod = getResolveStreamMethod =
-              io.grpc.MethodDescriptor.<o3.souse.producer.ResolveRequest, o3.souse.producer.ResolveResponse>newBuilder()
+              io.grpc.MethodDescriptor.<o3.souse.producer.ResolveMessage, o3.souse.producer.ResolveMessage>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "resolveStream"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  o3.souse.producer.ResolveRequest.getDefaultInstance()))
+                  o3.souse.producer.ResolveMessage.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  o3.souse.producer.ResolveResponse.getDefaultInstance()))
+                  o3.souse.producer.ResolveMessage.getDefaultInstance()))
               .setSchemaDescriptor(new SoUseProducerMethodDescriptorSupplier("resolveStream"))
               .build();
         }
@@ -127,15 +127,15 @@ public final class SoUseProducerGrpc {
 
     /**
      */
-    default void resolve(o3.souse.producer.ResolveRequest request,
-        io.grpc.stub.StreamObserver<o3.souse.producer.ResolveResponse> responseObserver) {
+    default void resolve(o3.souse.producer.ResolveMessage request,
+        io.grpc.stub.StreamObserver<o3.souse.producer.ResolveMessage> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getResolveMethod(), responseObserver);
     }
 
     /**
      */
-    default io.grpc.stub.StreamObserver<o3.souse.producer.ResolveRequest> resolveStream(
-        io.grpc.stub.StreamObserver<o3.souse.producer.ResolveResponse> responseObserver) {
+    default io.grpc.stub.StreamObserver<o3.souse.producer.ResolveMessage> resolveStream(
+        io.grpc.stub.StreamObserver<o3.souse.producer.ResolveMessage> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getResolveStreamMethod(), responseObserver);
     }
   }
@@ -169,16 +169,16 @@ public final class SoUseProducerGrpc {
 
     /**
      */
-    public void resolve(o3.souse.producer.ResolveRequest request,
-        io.grpc.stub.StreamObserver<o3.souse.producer.ResolveResponse> responseObserver) {
+    public void resolve(o3.souse.producer.ResolveMessage request,
+        io.grpc.stub.StreamObserver<o3.souse.producer.ResolveMessage> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getResolveMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public io.grpc.stub.StreamObserver<o3.souse.producer.ResolveRequest> resolveStream(
-        io.grpc.stub.StreamObserver<o3.souse.producer.ResolveResponse> responseObserver) {
+    public io.grpc.stub.StreamObserver<o3.souse.producer.ResolveMessage> resolveStream(
+        io.grpc.stub.StreamObserver<o3.souse.producer.ResolveMessage> responseObserver) {
       return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
           getChannel().newCall(getResolveStreamMethod(), getCallOptions()), responseObserver);
     }
@@ -202,7 +202,7 @@ public final class SoUseProducerGrpc {
 
     /**
      */
-    public o3.souse.producer.ResolveResponse resolve(o3.souse.producer.ResolveRequest request) {
+    public o3.souse.producer.ResolveMessage resolve(o3.souse.producer.ResolveMessage request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getResolveMethod(), getCallOptions(), request);
     }
@@ -226,8 +226,8 @@ public final class SoUseProducerGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<o3.souse.producer.ResolveResponse> resolve(
-        o3.souse.producer.ResolveRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<o3.souse.producer.ResolveMessage> resolve(
+        o3.souse.producer.ResolveMessage request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getResolveMethod(), getCallOptions()), request);
     }
@@ -254,8 +254,8 @@ public final class SoUseProducerGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_RESOLVE:
-          serviceImpl.resolve((o3.souse.producer.ResolveRequest) request,
-              (io.grpc.stub.StreamObserver<o3.souse.producer.ResolveResponse>) responseObserver);
+          serviceImpl.resolve((o3.souse.producer.ResolveMessage) request,
+              (io.grpc.stub.StreamObserver<o3.souse.producer.ResolveMessage>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -269,7 +269,7 @@ public final class SoUseProducerGrpc {
       switch (methodId) {
         case METHODID_RESOLVE_STREAM:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.resolveStream(
-              (io.grpc.stub.StreamObserver<o3.souse.producer.ResolveResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<o3.souse.producer.ResolveMessage>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -282,15 +282,15 @@ public final class SoUseProducerGrpc {
           getResolveMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              o3.souse.producer.ResolveRequest,
-              o3.souse.producer.ResolveResponse>(
+              o3.souse.producer.ResolveMessage,
+              o3.souse.producer.ResolveMessage>(
                 service, METHODID_RESOLVE)))
         .addMethod(
           getResolveStreamMethod(),
           io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
             new MethodHandlers<
-              o3.souse.producer.ResolveRequest,
-              o3.souse.producer.ResolveResponse>(
+              o3.souse.producer.ResolveMessage,
+              o3.souse.producer.ResolveMessage>(
                 service, METHODID_RESOLVE_STREAM)))
         .build();
   }
