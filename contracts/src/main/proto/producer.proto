@@ -7,21 +7,16 @@ option java_package = "o3.souse.producer";
 option java_outer_classname = "SoUseProducerService";
 
 service SoUseProducer {
-
-  rpc resolve(ResolveMessage) returns (ResolveMessage) {}
-
   rpc resolveStream(stream ResolveMessage) returns (stream ResolveMessage) {}
 }
 
 message ResolveMessage {
   string name = 1;
-  oneof value {
-    Payload payloads = 2;
-    bool requested = 3;
+  oneof payload {
+    bytes blobValue = 2;
+    int32 intValue = 3;
+    float fpValue = 4;
+    bool boolValue = 5;
+    bool requested = 6;
   }
-}
-
-message Payload {
-  string name = 1;
-  bytes body = 2;
 }
