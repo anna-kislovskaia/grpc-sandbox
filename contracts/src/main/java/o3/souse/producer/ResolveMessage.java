@@ -16,9 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ResolveMessage() {
-    requestId_ = "";
-    names_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-    payloads_ = java.util.Collections.emptyList();
+    name_ = "";
   }
 
   @java.lang.Override
@@ -41,7 +39,6 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
-    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -55,25 +52,26 @@ private static final long serialVersionUID = 0L;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            requestId_ = s;
+            name_ = s;
             break;
           }
           case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              names_ = new com.google.protobuf.LazyStringArrayList();
-              mutable_bitField0_ |= 0x00000001;
+            o3.souse.producer.Payload.Builder subBuilder = null;
+            if (valueCase_ == 2) {
+              subBuilder = ((o3.souse.producer.Payload) value_).toBuilder();
             }
-            names_.add(s);
+            value_ =
+                input.readMessage(o3.souse.producer.Payload.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom((o3.souse.producer.Payload) value_);
+              value_ = subBuilder.buildPartial();
+            }
+            valueCase_ = 2;
             break;
           }
-          case 26: {
-            if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-              payloads_ = new java.util.ArrayList<o3.souse.producer.Payload>();
-              mutable_bitField0_ |= 0x00000002;
-            }
-            payloads_.add(
-                input.readMessage(o3.souse.producer.Payload.parser(), extensionRegistry));
+          case 24: {
+            valueCase_ = 3;
+            value_ = input.readBool();
             break;
           }
           default: {
@@ -91,12 +89,6 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        names_ = names_.getUnmodifiableView();
-      }
-      if (((mutable_bitField0_ & 0x00000002) != 0)) {
-        payloads_ = java.util.Collections.unmodifiableList(payloads_);
-      }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
@@ -114,117 +106,135 @@ private static final long serialVersionUID = 0L;
             o3.souse.producer.ResolveMessage.class, o3.souse.producer.ResolveMessage.Builder.class);
   }
 
-  public static final int REQUEST_ID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object requestId_;
+  private int valueCase_ = 0;
+  private java.lang.Object value_;
+  public enum ValueCase
+      implements com.google.protobuf.Internal.EnumLite,
+          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    PAYLOADS(2),
+    REQUESTED(3),
+    VALUE_NOT_SET(0);
+    private final int value;
+    private ValueCase(int value) {
+      this.value = value;
+    }
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ValueCase valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ValueCase forNumber(int value) {
+      switch (value) {
+        case 2: return PAYLOADS;
+        case 3: return REQUESTED;
+        case 0: return VALUE_NOT_SET;
+        default: return null;
+      }
+    }
+    public int getNumber() {
+      return this.value;
+    }
+  };
+
+  public ValueCase
+  getValueCase() {
+    return ValueCase.forNumber(
+        valueCase_);
+  }
+
+  public static final int NAME_FIELD_NUMBER = 1;
+  private volatile java.lang.Object name_;
   /**
-   * <code>string request_id = 1;</code>
-   * @return The requestId.
+   * <code>string name = 1;</code>
+   * @return The name.
    */
   @java.lang.Override
-  public java.lang.String getRequestId() {
-    java.lang.Object ref = requestId_;
+  public java.lang.String getName() {
+    java.lang.Object ref = name_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      requestId_ = s;
+      name_ = s;
       return s;
     }
   }
   /**
-   * <code>string request_id = 1;</code>
-   * @return The bytes for requestId.
+   * <code>string name = 1;</code>
+   * @return The bytes for name.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getRequestIdBytes() {
-    java.lang.Object ref = requestId_;
+      getNameBytes() {
+    java.lang.Object ref = name_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      requestId_ = b;
+      name_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int NAMES_FIELD_NUMBER = 2;
-  private com.google.protobuf.LazyStringList names_;
+  public static final int PAYLOADS_FIELD_NUMBER = 2;
   /**
-   * <code>repeated string names = 2;</code>
-   * @return A list containing the names.
+   * <code>.producer.Payload payloads = 2;</code>
+   * @return Whether the payloads field is set.
    */
-  public com.google.protobuf.ProtocolStringList
-      getNamesList() {
-    return names_;
+  @java.lang.Override
+  public boolean hasPayloads() {
+    return valueCase_ == 2;
   }
   /**
-   * <code>repeated string names = 2;</code>
-   * @return The count of names.
+   * <code>.producer.Payload payloads = 2;</code>
+   * @return The payloads.
    */
-  public int getNamesCount() {
-    return names_.size();
+  @java.lang.Override
+  public o3.souse.producer.Payload getPayloads() {
+    if (valueCase_ == 2) {
+       return (o3.souse.producer.Payload) value_;
+    }
+    return o3.souse.producer.Payload.getDefaultInstance();
   }
   /**
-   * <code>repeated string names = 2;</code>
-   * @param index The index of the element to return.
-   * @return The names at the given index.
+   * <code>.producer.Payload payloads = 2;</code>
    */
-  public java.lang.String getNames(int index) {
-    return names_.get(index);
-  }
-  /**
-   * <code>repeated string names = 2;</code>
-   * @param index The index of the value to return.
-   * @return The bytes of the names at the given index.
-   */
-  public com.google.protobuf.ByteString
-      getNamesBytes(int index) {
-    return names_.getByteString(index);
+  @java.lang.Override
+  public o3.souse.producer.PayloadOrBuilder getPayloadsOrBuilder() {
+    if (valueCase_ == 2) {
+       return (o3.souse.producer.Payload) value_;
+    }
+    return o3.souse.producer.Payload.getDefaultInstance();
   }
 
-  public static final int PAYLOADS_FIELD_NUMBER = 3;
-  private java.util.List<o3.souse.producer.Payload> payloads_;
+  public static final int REQUESTED_FIELD_NUMBER = 3;
   /**
-   * <code>repeated .producer.Payload payloads = 3;</code>
+   * <code>bool requested = 3;</code>
+   * @return Whether the requested field is set.
    */
   @java.lang.Override
-  public java.util.List<o3.souse.producer.Payload> getPayloadsList() {
-    return payloads_;
+  public boolean hasRequested() {
+    return valueCase_ == 3;
   }
   /**
-   * <code>repeated .producer.Payload payloads = 3;</code>
+   * <code>bool requested = 3;</code>
+   * @return The requested.
    */
   @java.lang.Override
-  public java.util.List<? extends o3.souse.producer.PayloadOrBuilder> 
-      getPayloadsOrBuilderList() {
-    return payloads_;
-  }
-  /**
-   * <code>repeated .producer.Payload payloads = 3;</code>
-   */
-  @java.lang.Override
-  public int getPayloadsCount() {
-    return payloads_.size();
-  }
-  /**
-   * <code>repeated .producer.Payload payloads = 3;</code>
-   */
-  @java.lang.Override
-  public o3.souse.producer.Payload getPayloads(int index) {
-    return payloads_.get(index);
-  }
-  /**
-   * <code>repeated .producer.Payload payloads = 3;</code>
-   */
-  @java.lang.Override
-  public o3.souse.producer.PayloadOrBuilder getPayloadsOrBuilder(
-      int index) {
-    return payloads_.get(index);
+  public boolean getRequested() {
+    if (valueCase_ == 3) {
+      return (java.lang.Boolean) value_;
+    }
+    return false;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -241,14 +251,15 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getRequestIdBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, requestId_);
+    if (!getNameBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
     }
-    for (int i = 0; i < names_.size(); i++) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, names_.getRaw(i));
+    if (valueCase_ == 2) {
+      output.writeMessage(2, (o3.souse.producer.Payload) value_);
     }
-    for (int i = 0; i < payloads_.size(); i++) {
-      output.writeMessage(3, payloads_.get(i));
+    if (valueCase_ == 3) {
+      output.writeBool(
+          3, (boolean)((java.lang.Boolean) value_));
     }
     unknownFields.writeTo(output);
   }
@@ -259,20 +270,17 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getRequestIdBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, requestId_);
+    if (!getNameBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
     }
-    {
-      int dataSize = 0;
-      for (int i = 0; i < names_.size(); i++) {
-        dataSize += computeStringSizeNoTag(names_.getRaw(i));
-      }
-      size += dataSize;
-      size += 1 * getNamesList().size();
-    }
-    for (int i = 0; i < payloads_.size(); i++) {
+    if (valueCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, payloads_.get(i));
+        .computeMessageSize(2, (o3.souse.producer.Payload) value_);
+    }
+    if (valueCase_ == 3) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(
+            3, (boolean)((java.lang.Boolean) value_));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -289,12 +297,21 @@ private static final long serialVersionUID = 0L;
     }
     o3.souse.producer.ResolveMessage other = (o3.souse.producer.ResolveMessage) obj;
 
-    if (!getRequestId()
-        .equals(other.getRequestId())) return false;
-    if (!getNamesList()
-        .equals(other.getNamesList())) return false;
-    if (!getPayloadsList()
-        .equals(other.getPayloadsList())) return false;
+    if (!getName()
+        .equals(other.getName())) return false;
+    if (!getValueCase().equals(other.getValueCase())) return false;
+    switch (valueCase_) {
+      case 2:
+        if (!getPayloads()
+            .equals(other.getPayloads())) return false;
+        break;
+      case 3:
+        if (getRequested()
+            != other.getRequested()) return false;
+        break;
+      case 0:
+      default:
+    }
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -306,15 +323,20 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getRequestId().hashCode();
-    if (getNamesCount() > 0) {
-      hash = (37 * hash) + NAMES_FIELD_NUMBER;
-      hash = (53 * hash) + getNamesList().hashCode();
-    }
-    if (getPayloadsCount() > 0) {
-      hash = (37 * hash) + PAYLOADS_FIELD_NUMBER;
-      hash = (53 * hash) + getPayloadsList().hashCode();
+    hash = (37 * hash) + NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getName().hashCode();
+    switch (valueCase_) {
+      case 2:
+        hash = (37 * hash) + PAYLOADS_FIELD_NUMBER;
+        hash = (53 * hash) + getPayloads().hashCode();
+        break;
+      case 3:
+        hash = (37 * hash) + REQUESTED_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getRequested());
+        break;
+      case 0:
+      default:
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -444,22 +466,15 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
-        getPayloadsFieldBuilder();
       }
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      requestId_ = "";
+      name_ = "";
 
-      names_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000001);
-      if (payloadsBuilder_ == null) {
-        payloads_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-      } else {
-        payloadsBuilder_.clear();
-      }
+      valueCase_ = 0;
+      value_ = null;
       return this;
     }
 
@@ -486,22 +501,18 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public o3.souse.producer.ResolveMessage buildPartial() {
       o3.souse.producer.ResolveMessage result = new o3.souse.producer.ResolveMessage(this);
-      int from_bitField0_ = bitField0_;
-      result.requestId_ = requestId_;
-      if (((bitField0_ & 0x00000001) != 0)) {
-        names_ = names_.getUnmodifiableView();
-        bitField0_ = (bitField0_ & ~0x00000001);
-      }
-      result.names_ = names_;
-      if (payloadsBuilder_ == null) {
-        if (((bitField0_ & 0x00000002) != 0)) {
-          payloads_ = java.util.Collections.unmodifiableList(payloads_);
-          bitField0_ = (bitField0_ & ~0x00000002);
+      result.name_ = name_;
+      if (valueCase_ == 2) {
+        if (payloadsBuilder_ == null) {
+          result.value_ = value_;
+        } else {
+          result.value_ = payloadsBuilder_.build();
         }
-        result.payloads_ = payloads_;
-      } else {
-        result.payloads_ = payloadsBuilder_.build();
       }
+      if (valueCase_ == 3) {
+        result.value_ = value_;
+      }
+      result.valueCase_ = valueCase_;
       onBuilt();
       return result;
     }
@@ -550,44 +561,21 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(o3.souse.producer.ResolveMessage other) {
       if (other == o3.souse.producer.ResolveMessage.getDefaultInstance()) return this;
-      if (!other.getRequestId().isEmpty()) {
-        requestId_ = other.requestId_;
+      if (!other.getName().isEmpty()) {
+        name_ = other.name_;
         onChanged();
       }
-      if (!other.names_.isEmpty()) {
-        if (names_.isEmpty()) {
-          names_ = other.names_;
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          ensureNamesIsMutable();
-          names_.addAll(other.names_);
+      switch (other.getValueCase()) {
+        case PAYLOADS: {
+          mergePayloads(other.getPayloads());
+          break;
         }
-        onChanged();
-      }
-      if (payloadsBuilder_ == null) {
-        if (!other.payloads_.isEmpty()) {
-          if (payloads_.isEmpty()) {
-            payloads_ = other.payloads_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-          } else {
-            ensurePayloadsIsMutable();
-            payloads_.addAll(other.payloads_);
-          }
-          onChanged();
+        case REQUESTED: {
+          setRequested(other.getRequested());
+          break;
         }
-      } else {
-        if (!other.payloads_.isEmpty()) {
-          if (payloadsBuilder_.isEmpty()) {
-            payloadsBuilder_.dispose();
-            payloadsBuilder_ = null;
-            payloads_ = other.payloads_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-            payloadsBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getPayloadsFieldBuilder() : null;
-          } else {
-            payloadsBuilder_.addAllMessages(other.payloads_);
-          }
+        case VALUE_NOT_SET: {
+          break;
         }
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -618,432 +606,278 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int bitField0_;
+    private int valueCase_ = 0;
+    private java.lang.Object value_;
+    public ValueCase
+        getValueCase() {
+      return ValueCase.forNumber(
+          valueCase_);
+    }
 
-    private java.lang.Object requestId_ = "";
+    public Builder clearValue() {
+      valueCase_ = 0;
+      value_ = null;
+      onChanged();
+      return this;
+    }
+
+
+    private java.lang.Object name_ = "";
     /**
-     * <code>string request_id = 1;</code>
-     * @return The requestId.
+     * <code>string name = 1;</code>
+     * @return The name.
      */
-    public java.lang.String getRequestId() {
-      java.lang.Object ref = requestId_;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        requestId_ = s;
+        name_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string request_id = 1;</code>
-     * @return The bytes for requestId.
+     * <code>string name = 1;</code>
+     * @return The bytes for name.
      */
     public com.google.protobuf.ByteString
-        getRequestIdBytes() {
-      java.lang.Object ref = requestId_;
+        getNameBytes() {
+      java.lang.Object ref = name_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        requestId_ = b;
+        name_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string request_id = 1;</code>
-     * @param value The requestId to set.
+     * <code>string name = 1;</code>
+     * @param value The name to set.
      * @return This builder for chaining.
      */
-    public Builder setRequestId(
+    public Builder setName(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      requestId_ = value;
+      name_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string request_id = 1;</code>
+     * <code>string name = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearRequestId() {
+    public Builder clearName() {
       
-      requestId_ = getDefaultInstance().getRequestId();
+      name_ = getDefaultInstance().getName();
       onChanged();
       return this;
     }
     /**
-     * <code>string request_id = 1;</code>
-     * @param value The bytes for requestId to set.
+     * <code>string name = 1;</code>
+     * @param value The bytes for name to set.
      * @return This builder for chaining.
      */
-    public Builder setRequestIdBytes(
+    public Builder setNameBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      requestId_ = value;
+      name_ = value;
       onChanged();
       return this;
     }
 
-    private com.google.protobuf.LazyStringList names_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-    private void ensureNamesIsMutable() {
-      if (!((bitField0_ & 0x00000001) != 0)) {
-        names_ = new com.google.protobuf.LazyStringArrayList(names_);
-        bitField0_ |= 0x00000001;
-       }
-    }
-    /**
-     * <code>repeated string names = 2;</code>
-     * @return A list containing the names.
-     */
-    public com.google.protobuf.ProtocolStringList
-        getNamesList() {
-      return names_.getUnmodifiableView();
-    }
-    /**
-     * <code>repeated string names = 2;</code>
-     * @return The count of names.
-     */
-    public int getNamesCount() {
-      return names_.size();
-    }
-    /**
-     * <code>repeated string names = 2;</code>
-     * @param index The index of the element to return.
-     * @return The names at the given index.
-     */
-    public java.lang.String getNames(int index) {
-      return names_.get(index);
-    }
-    /**
-     * <code>repeated string names = 2;</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the names at the given index.
-     */
-    public com.google.protobuf.ByteString
-        getNamesBytes(int index) {
-      return names_.getByteString(index);
-    }
-    /**
-     * <code>repeated string names = 2;</code>
-     * @param index The index to set the value at.
-     * @param value The names to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNames(
-        int index, java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureNamesIsMutable();
-      names_.set(index, value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string names = 2;</code>
-     * @param value The names to add.
-     * @return This builder for chaining.
-     */
-    public Builder addNames(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureNamesIsMutable();
-      names_.add(value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string names = 2;</code>
-     * @param values The names to add.
-     * @return This builder for chaining.
-     */
-    public Builder addAllNames(
-        java.lang.Iterable<java.lang.String> values) {
-      ensureNamesIsMutable();
-      com.google.protobuf.AbstractMessageLite.Builder.addAll(
-          values, names_);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string names = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearNames() {
-      names_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000001);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string names = 2;</code>
-     * @param value The bytes of the names to add.
-     * @return This builder for chaining.
-     */
-    public Builder addNamesBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      ensureNamesIsMutable();
-      names_.add(value);
-      onChanged();
-      return this;
-    }
-
-    private java.util.List<o3.souse.producer.Payload> payloads_ =
-      java.util.Collections.emptyList();
-    private void ensurePayloadsIsMutable() {
-      if (!((bitField0_ & 0x00000002) != 0)) {
-        payloads_ = new java.util.ArrayList<o3.souse.producer.Payload>(payloads_);
-        bitField0_ |= 0x00000002;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
+    private com.google.protobuf.SingleFieldBuilderV3<
         o3.souse.producer.Payload, o3.souse.producer.Payload.Builder, o3.souse.producer.PayloadOrBuilder> payloadsBuilder_;
-
     /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
+     * <code>.producer.Payload payloads = 2;</code>
+     * @return Whether the payloads field is set.
      */
-    public java.util.List<o3.souse.producer.Payload> getPayloadsList() {
+    @java.lang.Override
+    public boolean hasPayloads() {
+      return valueCase_ == 2;
+    }
+    /**
+     * <code>.producer.Payload payloads = 2;</code>
+     * @return The payloads.
+     */
+    @java.lang.Override
+    public o3.souse.producer.Payload getPayloads() {
       if (payloadsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(payloads_);
+        if (valueCase_ == 2) {
+          return (o3.souse.producer.Payload) value_;
+        }
+        return o3.souse.producer.Payload.getDefaultInstance();
       } else {
-        return payloadsBuilder_.getMessageList();
+        if (valueCase_ == 2) {
+          return payloadsBuilder_.getMessage();
+        }
+        return o3.souse.producer.Payload.getDefaultInstance();
       }
     }
     /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
+     * <code>.producer.Payload payloads = 2;</code>
      */
-    public int getPayloadsCount() {
+    public Builder setPayloads(o3.souse.producer.Payload value) {
       if (payloadsBuilder_ == null) {
-        return payloads_.size();
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        value_ = value;
+        onChanged();
       } else {
-        return payloadsBuilder_.getCount();
+        payloadsBuilder_.setMessage(value);
       }
+      valueCase_ = 2;
+      return this;
     }
     /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public o3.souse.producer.Payload getPayloads(int index) {
-      if (payloadsBuilder_ == null) {
-        return payloads_.get(index);
-      } else {
-        return payloadsBuilder_.getMessage(index);
-      }
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
+     * <code>.producer.Payload payloads = 2;</code>
      */
     public Builder setPayloads(
-        int index, o3.souse.producer.Payload value) {
-      if (payloadsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensurePayloadsIsMutable();
-        payloads_.set(index, value);
-        onChanged();
-      } else {
-        payloadsBuilder_.setMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public Builder setPayloads(
-        int index, o3.souse.producer.Payload.Builder builderForValue) {
-      if (payloadsBuilder_ == null) {
-        ensurePayloadsIsMutable();
-        payloads_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        payloadsBuilder_.setMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public Builder addPayloads(o3.souse.producer.Payload value) {
-      if (payloadsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensurePayloadsIsMutable();
-        payloads_.add(value);
-        onChanged();
-      } else {
-        payloadsBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public Builder addPayloads(
-        int index, o3.souse.producer.Payload value) {
-      if (payloadsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensurePayloadsIsMutable();
-        payloads_.add(index, value);
-        onChanged();
-      } else {
-        payloadsBuilder_.addMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public Builder addPayloads(
         o3.souse.producer.Payload.Builder builderForValue) {
       if (payloadsBuilder_ == null) {
-        ensurePayloadsIsMutable();
-        payloads_.add(builderForValue.build());
+        value_ = builderForValue.build();
         onChanged();
       } else {
-        payloadsBuilder_.addMessage(builderForValue.build());
+        payloadsBuilder_.setMessage(builderForValue.build());
       }
+      valueCase_ = 2;
       return this;
     }
     /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
+     * <code>.producer.Payload payloads = 2;</code>
      */
-    public Builder addPayloads(
-        int index, o3.souse.producer.Payload.Builder builderForValue) {
+    public Builder mergePayloads(o3.souse.producer.Payload value) {
       if (payloadsBuilder_ == null) {
-        ensurePayloadsIsMutable();
-        payloads_.add(index, builderForValue.build());
+        if (valueCase_ == 2 &&
+            value_ != o3.souse.producer.Payload.getDefaultInstance()) {
+          value_ = o3.souse.producer.Payload.newBuilder((o3.souse.producer.Payload) value_)
+              .mergeFrom(value).buildPartial();
+        } else {
+          value_ = value;
+        }
         onChanged();
       } else {
-        payloadsBuilder_.addMessage(index, builderForValue.build());
+        if (valueCase_ == 2) {
+          payloadsBuilder_.mergeFrom(value);
+        }
+        payloadsBuilder_.setMessage(value);
       }
+      valueCase_ = 2;
       return this;
     }
     /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public Builder addAllPayloads(
-        java.lang.Iterable<? extends o3.souse.producer.Payload> values) {
-      if (payloadsBuilder_ == null) {
-        ensurePayloadsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, payloads_);
-        onChanged();
-      } else {
-        payloadsBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
+     * <code>.producer.Payload payloads = 2;</code>
      */
     public Builder clearPayloads() {
       if (payloadsBuilder_ == null) {
-        payloads_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
+        if (valueCase_ == 2) {
+          valueCase_ = 0;
+          value_ = null;
+          onChanged();
+        }
       } else {
+        if (valueCase_ == 2) {
+          valueCase_ = 0;
+          value_ = null;
+        }
         payloadsBuilder_.clear();
       }
       return this;
     }
     /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
+     * <code>.producer.Payload payloads = 2;</code>
      */
-    public Builder removePayloads(int index) {
-      if (payloadsBuilder_ == null) {
-        ensurePayloadsIsMutable();
-        payloads_.remove(index);
-        onChanged();
+    public o3.souse.producer.Payload.Builder getPayloadsBuilder() {
+      return getPayloadsFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.producer.Payload payloads = 2;</code>
+     */
+    @java.lang.Override
+    public o3.souse.producer.PayloadOrBuilder getPayloadsOrBuilder() {
+      if ((valueCase_ == 2) && (payloadsBuilder_ != null)) {
+        return payloadsBuilder_.getMessageOrBuilder();
       } else {
-        payloadsBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public o3.souse.producer.Payload.Builder getPayloadsBuilder(
-        int index) {
-      return getPayloadsFieldBuilder().getBuilder(index);
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public o3.souse.producer.PayloadOrBuilder getPayloadsOrBuilder(
-        int index) {
-      if (payloadsBuilder_ == null) {
-        return payloads_.get(index);  } else {
-        return payloadsBuilder_.getMessageOrBuilder(index);
+        if (valueCase_ == 2) {
+          return (o3.souse.producer.Payload) value_;
+        }
+        return o3.souse.producer.Payload.getDefaultInstance();
       }
     }
     /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
+     * <code>.producer.Payload payloads = 2;</code>
      */
-    public java.util.List<? extends o3.souse.producer.PayloadOrBuilder> 
-         getPayloadsOrBuilderList() {
-      if (payloadsBuilder_ != null) {
-        return payloadsBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(payloads_);
-      }
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public o3.souse.producer.Payload.Builder addPayloadsBuilder() {
-      return getPayloadsFieldBuilder().addBuilder(
-          o3.souse.producer.Payload.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public o3.souse.producer.Payload.Builder addPayloadsBuilder(
-        int index) {
-      return getPayloadsFieldBuilder().addBuilder(
-          index, o3.souse.producer.Payload.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .producer.Payload payloads = 3;</code>
-     */
-    public java.util.List<o3.souse.producer.Payload.Builder> 
-         getPayloadsBuilderList() {
-      return getPayloadsFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
+    private com.google.protobuf.SingleFieldBuilderV3<
         o3.souse.producer.Payload, o3.souse.producer.Payload.Builder, o3.souse.producer.PayloadOrBuilder> 
         getPayloadsFieldBuilder() {
       if (payloadsBuilder_ == null) {
-        payloadsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+        if (!(valueCase_ == 2)) {
+          value_ = o3.souse.producer.Payload.getDefaultInstance();
+        }
+        payloadsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
             o3.souse.producer.Payload, o3.souse.producer.Payload.Builder, o3.souse.producer.PayloadOrBuilder>(
-                payloads_,
-                ((bitField0_ & 0x00000002) != 0),
+                (o3.souse.producer.Payload) value_,
                 getParentForChildren(),
                 isClean());
-        payloads_ = null;
+        value_ = null;
       }
+      valueCase_ = 2;
+      onChanged();;
       return payloadsBuilder_;
+    }
+
+    /**
+     * <code>bool requested = 3;</code>
+     * @return Whether the requested field is set.
+     */
+    public boolean hasRequested() {
+      return valueCase_ == 3;
+    }
+    /**
+     * <code>bool requested = 3;</code>
+     * @return The requested.
+     */
+    public boolean getRequested() {
+      if (valueCase_ == 3) {
+        return (java.lang.Boolean) value_;
+      }
+      return false;
+    }
+    /**
+     * <code>bool requested = 3;</code>
+     * @param value The requested to set.
+     * @return This builder for chaining.
+     */
+    public Builder setRequested(boolean value) {
+      valueCase_ = 3;
+      value_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool requested = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearRequested() {
+      if (valueCase_ == 3) {
+        valueCase_ = 0;
+        value_ = null;
+        onChanged();
+      }
+      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

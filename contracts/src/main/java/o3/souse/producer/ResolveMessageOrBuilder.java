@@ -8,63 +8,42 @@ public interface ResolveMessageOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string request_id = 1;</code>
-   * @return The requestId.
+   * <code>string name = 1;</code>
+   * @return The name.
    */
-  java.lang.String getRequestId();
+  java.lang.String getName();
   /**
-   * <code>string request_id = 1;</code>
-   * @return The bytes for requestId.
+   * <code>string name = 1;</code>
+   * @return The bytes for name.
    */
   com.google.protobuf.ByteString
-      getRequestIdBytes();
+      getNameBytes();
 
   /**
-   * <code>repeated string names = 2;</code>
-   * @return A list containing the names.
+   * <code>.producer.Payload payloads = 2;</code>
+   * @return Whether the payloads field is set.
    */
-  java.util.List<java.lang.String>
-      getNamesList();
+  boolean hasPayloads();
   /**
-   * <code>repeated string names = 2;</code>
-   * @return The count of names.
+   * <code>.producer.Payload payloads = 2;</code>
+   * @return The payloads.
    */
-  int getNamesCount();
+  o3.souse.producer.Payload getPayloads();
   /**
-   * <code>repeated string names = 2;</code>
-   * @param index The index of the element to return.
-   * @return The names at the given index.
+   * <code>.producer.Payload payloads = 2;</code>
    */
-  java.lang.String getNames(int index);
-  /**
-   * <code>repeated string names = 2;</code>
-   * @param index The index of the value to return.
-   * @return The bytes of the names at the given index.
-   */
-  com.google.protobuf.ByteString
-      getNamesBytes(int index);
+  o3.souse.producer.PayloadOrBuilder getPayloadsOrBuilder();
 
   /**
-   * <code>repeated .producer.Payload payloads = 3;</code>
+   * <code>bool requested = 3;</code>
+   * @return Whether the requested field is set.
    */
-  java.util.List<o3.souse.producer.Payload> 
-      getPayloadsList();
+  boolean hasRequested();
   /**
-   * <code>repeated .producer.Payload payloads = 3;</code>
+   * <code>bool requested = 3;</code>
+   * @return The requested.
    */
-  o3.souse.producer.Payload getPayloads(int index);
-  /**
-   * <code>repeated .producer.Payload payloads = 3;</code>
-   */
-  int getPayloadsCount();
-  /**
-   * <code>repeated .producer.Payload payloads = 3;</code>
-   */
-  java.util.List<? extends o3.souse.producer.PayloadOrBuilder> 
-      getPayloadsOrBuilderList();
-  /**
-   * <code>repeated .producer.Payload payloads = 3;</code>
-   */
-  o3.souse.producer.PayloadOrBuilder getPayloadsOrBuilder(
-      int index);
+  boolean getRequested();
+
+  public o3.souse.producer.ResolveMessage.ValueCase getValueCase();
 }

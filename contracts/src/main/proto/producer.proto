@@ -14,9 +14,11 @@ service SoUseProducer {
 }
 
 message ResolveMessage {
-  string request_id = 1;
-  repeated string names = 2;
-  repeated Payload payloads = 3;
+  string name = 1;
+  oneof value {
+    Payload payloads = 2;
+    bool requested = 3;
+  }
 }
 
 message Payload {
