@@ -19,11 +19,6 @@ public final class SoUseProducerService {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_producer_ResolveMessage_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_producer_Payload_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_producer_Payload_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -33,16 +28,14 @@ public final class SoUseProducerService {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016producer.proto\022\010producer\"c\n\016ResolveMes" +
-      "sage\022\014\n\004name\030\001 \001(\t\022%\n\010payloads\030\002 \001(\0132\021.p" +
-      "roducer.PayloadH\000\022\023\n\trequested\030\003 \001(\010H\000B\007" +
-      "\n\005value\"%\n\007Payload\022\014\n\004name\030\001 \001(\t\022\014\n\004body" +
-      "\030\002 \001(\0142\233\001\n\rSoUseProducer\022?\n\007resolve\022\030.pr" +
-      "oducer.ResolveMessage\032\030.producer.Resolve" +
-      "Message\"\000\022I\n\rresolveStream\022\030.producer.Re" +
-      "solveMessage\032\030.producer.ResolveMessage\"\000" +
-      "(\0010\001B+\n\021o3.souse.producerB\024SoUseProducer" +
-      "ServiceP\001b\006proto3"
+      "\n\016producer.proto\022\010producer\"\217\001\n\016ResolveMe" +
+      "ssage\022\014\n\004name\030\001 \001(\t\022\023\n\tblobValue\030\002 \001(\014H\000" +
+      "\022\022\n\010intValue\030\003 \001(\005H\000\022\021\n\007fpValue\030\004 \001(\002H\000\022" +
+      "\023\n\tboolValue\030\005 \001(\010H\000\022\023\n\trequested\030\006 \001(\010H" +
+      "\000B\t\n\007payload2Z\n\rSoUseProducer\022I\n\rresolve" +
+      "Stream\022\030.producer.ResolveMessage\032\030.produ" +
+      "cer.ResolveMessage\"\000(\0010\001B+\n\021o3.souse.pro" +
+      "ducerB\024SoUseProducerServiceP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -53,13 +46,7 @@ public final class SoUseProducerService {
     internal_static_producer_ResolveMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_producer_ResolveMessage_descriptor,
-        new java.lang.String[] { "Name", "Payloads", "Requested", "Value", });
-    internal_static_producer_Payload_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_producer_Payload_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_producer_Payload_descriptor,
-        new java.lang.String[] { "Name", "Body", });
+        new java.lang.String[] { "Name", "BlobValue", "IntValue", "FpValue", "BoolValue", "Requested", "Payload", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

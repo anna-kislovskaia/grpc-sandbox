@@ -56,22 +56,28 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
-            o3.souse.producer.Payload.Builder subBuilder = null;
-            if (valueCase_ == 2) {
-              subBuilder = ((o3.souse.producer.Payload) value_).toBuilder();
-            }
-            value_ =
-                input.readMessage(o3.souse.producer.Payload.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom((o3.souse.producer.Payload) value_);
-              value_ = subBuilder.buildPartial();
-            }
-            valueCase_ = 2;
+            payloadCase_ = 2;
+            payload_ = input.readBytes();
             break;
           }
           case 24: {
-            valueCase_ = 3;
-            value_ = input.readBool();
+            payloadCase_ = 3;
+            payload_ = input.readInt32();
+            break;
+          }
+          case 37: {
+            payloadCase_ = 4;
+            payload_ = input.readFloat();
+            break;
+          }
+          case 40: {
+            payloadCase_ = 5;
+            payload_ = input.readBool();
+            break;
+          }
+          case 48: {
+            payloadCase_ = 6;
+            payload_ = input.readBool();
             break;
           }
           default: {
@@ -106,16 +112,19 @@ private static final long serialVersionUID = 0L;
             o3.souse.producer.ResolveMessage.class, o3.souse.producer.ResolveMessage.Builder.class);
   }
 
-  private int valueCase_ = 0;
-  private java.lang.Object value_;
-  public enum ValueCase
+  private int payloadCase_ = 0;
+  private java.lang.Object payload_;
+  public enum PayloadCase
       implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    PAYLOADS(2),
-    REQUESTED(3),
-    VALUE_NOT_SET(0);
+    BLOBVALUE(2),
+    INTVALUE(3),
+    FPVALUE(4),
+    BOOLVALUE(5),
+    REQUESTED(6),
+    PAYLOAD_NOT_SET(0);
     private final int value;
-    private ValueCase(int value) {
+    private PayloadCase(int value) {
       this.value = value;
     }
     /**
@@ -124,15 +133,18 @@ private static final long serialVersionUID = 0L;
      * @deprecated Use {@link #forNumber(int)} instead.
      */
     @java.lang.Deprecated
-    public static ValueCase valueOf(int value) {
+    public static PayloadCase valueOf(int value) {
       return forNumber(value);
     }
 
-    public static ValueCase forNumber(int value) {
+    public static PayloadCase forNumber(int value) {
       switch (value) {
-        case 2: return PAYLOADS;
-        case 3: return REQUESTED;
-        case 0: return VALUE_NOT_SET;
+        case 2: return BLOBVALUE;
+        case 3: return INTVALUE;
+        case 4: return FPVALUE;
+        case 5: return BOOLVALUE;
+        case 6: return REQUESTED;
+        case 0: return PAYLOAD_NOT_SET;
         default: return null;
       }
     }
@@ -141,10 +153,10 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public ValueCase
-  getValueCase() {
-    return ValueCase.forNumber(
-        valueCase_);
+  public PayloadCase
+  getPayloadCase() {
+    return PayloadCase.forNumber(
+        payloadCase_);
   }
 
   public static final int NAME_FIELD_NUMBER = 1;
@@ -185,54 +197,107 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int PAYLOADS_FIELD_NUMBER = 2;
+  public static final int BLOBVALUE_FIELD_NUMBER = 2;
   /**
-   * <code>.producer.Payload payloads = 2;</code>
-   * @return Whether the payloads field is set.
+   * <code>bytes blobValue = 2;</code>
+   * @return Whether the blobValue field is set.
    */
   @java.lang.Override
-  public boolean hasPayloads() {
-    return valueCase_ == 2;
+  public boolean hasBlobValue() {
+    return payloadCase_ == 2;
   }
   /**
-   * <code>.producer.Payload payloads = 2;</code>
-   * @return The payloads.
+   * <code>bytes blobValue = 2;</code>
+   * @return The blobValue.
    */
   @java.lang.Override
-  public o3.souse.producer.Payload getPayloads() {
-    if (valueCase_ == 2) {
-       return (o3.souse.producer.Payload) value_;
+  public com.google.protobuf.ByteString getBlobValue() {
+    if (payloadCase_ == 2) {
+      return (com.google.protobuf.ByteString) payload_;
     }
-    return o3.souse.producer.Payload.getDefaultInstance();
-  }
-  /**
-   * <code>.producer.Payload payloads = 2;</code>
-   */
-  @java.lang.Override
-  public o3.souse.producer.PayloadOrBuilder getPayloadsOrBuilder() {
-    if (valueCase_ == 2) {
-       return (o3.souse.producer.Payload) value_;
-    }
-    return o3.souse.producer.Payload.getDefaultInstance();
+    return com.google.protobuf.ByteString.EMPTY;
   }
 
-  public static final int REQUESTED_FIELD_NUMBER = 3;
+  public static final int INTVALUE_FIELD_NUMBER = 3;
   /**
-   * <code>bool requested = 3;</code>
+   * <code>int32 intValue = 3;</code>
+   * @return Whether the intValue field is set.
+   */
+  @java.lang.Override
+  public boolean hasIntValue() {
+    return payloadCase_ == 3;
+  }
+  /**
+   * <code>int32 intValue = 3;</code>
+   * @return The intValue.
+   */
+  @java.lang.Override
+  public int getIntValue() {
+    if (payloadCase_ == 3) {
+      return (java.lang.Integer) payload_;
+    }
+    return 0;
+  }
+
+  public static final int FPVALUE_FIELD_NUMBER = 4;
+  /**
+   * <code>float fpValue = 4;</code>
+   * @return Whether the fpValue field is set.
+   */
+  @java.lang.Override
+  public boolean hasFpValue() {
+    return payloadCase_ == 4;
+  }
+  /**
+   * <code>float fpValue = 4;</code>
+   * @return The fpValue.
+   */
+  @java.lang.Override
+  public float getFpValue() {
+    if (payloadCase_ == 4) {
+      return (java.lang.Float) payload_;
+    }
+    return 0F;
+  }
+
+  public static final int BOOLVALUE_FIELD_NUMBER = 5;
+  /**
+   * <code>bool boolValue = 5;</code>
+   * @return Whether the boolValue field is set.
+   */
+  @java.lang.Override
+  public boolean hasBoolValue() {
+    return payloadCase_ == 5;
+  }
+  /**
+   * <code>bool boolValue = 5;</code>
+   * @return The boolValue.
+   */
+  @java.lang.Override
+  public boolean getBoolValue() {
+    if (payloadCase_ == 5) {
+      return (java.lang.Boolean) payload_;
+    }
+    return false;
+  }
+
+  public static final int REQUESTED_FIELD_NUMBER = 6;
+  /**
+   * <code>bool requested = 6;</code>
    * @return Whether the requested field is set.
    */
   @java.lang.Override
   public boolean hasRequested() {
-    return valueCase_ == 3;
+    return payloadCase_ == 6;
   }
   /**
-   * <code>bool requested = 3;</code>
+   * <code>bool requested = 6;</code>
    * @return The requested.
    */
   @java.lang.Override
   public boolean getRequested() {
-    if (valueCase_ == 3) {
-      return (java.lang.Boolean) value_;
+    if (payloadCase_ == 6) {
+      return (java.lang.Boolean) payload_;
     }
     return false;
   }
@@ -254,12 +319,25 @@ private static final long serialVersionUID = 0L;
     if (!getNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
     }
-    if (valueCase_ == 2) {
-      output.writeMessage(2, (o3.souse.producer.Payload) value_);
+    if (payloadCase_ == 2) {
+      output.writeBytes(
+          2, (com.google.protobuf.ByteString) payload_);
     }
-    if (valueCase_ == 3) {
+    if (payloadCase_ == 3) {
+      output.writeInt32(
+          3, (int)((java.lang.Integer) payload_));
+    }
+    if (payloadCase_ == 4) {
+      output.writeFloat(
+          4, (float)((java.lang.Float) payload_));
+    }
+    if (payloadCase_ == 5) {
       output.writeBool(
-          3, (boolean)((java.lang.Boolean) value_));
+          5, (boolean)((java.lang.Boolean) payload_));
+    }
+    if (payloadCase_ == 6) {
+      output.writeBool(
+          6, (boolean)((java.lang.Boolean) payload_));
     }
     unknownFields.writeTo(output);
   }
@@ -273,14 +351,30 @@ private static final long serialVersionUID = 0L;
     if (!getNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
     }
-    if (valueCase_ == 2) {
+    if (payloadCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, (o3.souse.producer.Payload) value_);
+        .computeBytesSize(
+            2, (com.google.protobuf.ByteString) payload_);
     }
-    if (valueCase_ == 3) {
+    if (payloadCase_ == 3) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(
+            3, (int)((java.lang.Integer) payload_));
+    }
+    if (payloadCase_ == 4) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeFloatSize(
+            4, (float)((java.lang.Float) payload_));
+    }
+    if (payloadCase_ == 5) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(
-            3, (boolean)((java.lang.Boolean) value_));
+            5, (boolean)((java.lang.Boolean) payload_));
+    }
+    if (payloadCase_ == 6) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(
+            6, (boolean)((java.lang.Boolean) payload_));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -299,13 +393,26 @@ private static final long serialVersionUID = 0L;
 
     if (!getName()
         .equals(other.getName())) return false;
-    if (!getValueCase().equals(other.getValueCase())) return false;
-    switch (valueCase_) {
+    if (!getPayloadCase().equals(other.getPayloadCase())) return false;
+    switch (payloadCase_) {
       case 2:
-        if (!getPayloads()
-            .equals(other.getPayloads())) return false;
+        if (!getBlobValue()
+            .equals(other.getBlobValue())) return false;
         break;
       case 3:
+        if (getIntValue()
+            != other.getIntValue()) return false;
+        break;
+      case 4:
+        if (java.lang.Float.floatToIntBits(getFpValue())
+            != java.lang.Float.floatToIntBits(
+                other.getFpValue())) return false;
+        break;
+      case 5:
+        if (getBoolValue()
+            != other.getBoolValue()) return false;
+        break;
+      case 6:
         if (getRequested()
             != other.getRequested()) return false;
         break;
@@ -325,12 +432,26 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
-    switch (valueCase_) {
+    switch (payloadCase_) {
       case 2:
-        hash = (37 * hash) + PAYLOADS_FIELD_NUMBER;
-        hash = (53 * hash) + getPayloads().hashCode();
+        hash = (37 * hash) + BLOBVALUE_FIELD_NUMBER;
+        hash = (53 * hash) + getBlobValue().hashCode();
         break;
       case 3:
+        hash = (37 * hash) + INTVALUE_FIELD_NUMBER;
+        hash = (53 * hash) + getIntValue();
+        break;
+      case 4:
+        hash = (37 * hash) + FPVALUE_FIELD_NUMBER;
+        hash = (53 * hash) + java.lang.Float.floatToIntBits(
+            getFpValue());
+        break;
+      case 5:
+        hash = (37 * hash) + BOOLVALUE_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getBoolValue());
+        break;
+      case 6:
         hash = (37 * hash) + REQUESTED_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
             getRequested());
@@ -473,8 +594,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       name_ = "";
 
-      valueCase_ = 0;
-      value_ = null;
+      payloadCase_ = 0;
+      payload_ = null;
       return this;
     }
 
@@ -502,17 +623,22 @@ private static final long serialVersionUID = 0L;
     public o3.souse.producer.ResolveMessage buildPartial() {
       o3.souse.producer.ResolveMessage result = new o3.souse.producer.ResolveMessage(this);
       result.name_ = name_;
-      if (valueCase_ == 2) {
-        if (payloadsBuilder_ == null) {
-          result.value_ = value_;
-        } else {
-          result.value_ = payloadsBuilder_.build();
-        }
+      if (payloadCase_ == 2) {
+        result.payload_ = payload_;
       }
-      if (valueCase_ == 3) {
-        result.value_ = value_;
+      if (payloadCase_ == 3) {
+        result.payload_ = payload_;
       }
-      result.valueCase_ = valueCase_;
+      if (payloadCase_ == 4) {
+        result.payload_ = payload_;
+      }
+      if (payloadCase_ == 5) {
+        result.payload_ = payload_;
+      }
+      if (payloadCase_ == 6) {
+        result.payload_ = payload_;
+      }
+      result.payloadCase_ = payloadCase_;
       onBuilt();
       return result;
     }
@@ -565,16 +691,28 @@ private static final long serialVersionUID = 0L;
         name_ = other.name_;
         onChanged();
       }
-      switch (other.getValueCase()) {
-        case PAYLOADS: {
-          mergePayloads(other.getPayloads());
+      switch (other.getPayloadCase()) {
+        case BLOBVALUE: {
+          setBlobValue(other.getBlobValue());
+          break;
+        }
+        case INTVALUE: {
+          setIntValue(other.getIntValue());
+          break;
+        }
+        case FPVALUE: {
+          setFpValue(other.getFpValue());
+          break;
+        }
+        case BOOLVALUE: {
+          setBoolValue(other.getBoolValue());
           break;
         }
         case REQUESTED: {
           setRequested(other.getRequested());
           break;
         }
-        case VALUE_NOT_SET: {
+        case PAYLOAD_NOT_SET: {
           break;
         }
       }
@@ -606,17 +744,17 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int valueCase_ = 0;
-    private java.lang.Object value_;
-    public ValueCase
-        getValueCase() {
-      return ValueCase.forNumber(
-          valueCase_);
+    private int payloadCase_ = 0;
+    private java.lang.Object payload_;
+    public PayloadCase
+        getPayloadCase() {
+      return PayloadCase.forNumber(
+          payloadCase_);
     }
 
-    public Builder clearValue() {
-      valueCase_ = 0;
-      value_ = null;
+    public Builder clearPayload() {
+      payloadCase_ = 0;
+      payload_ = null;
       onChanged();
       return this;
     }
@@ -698,183 +836,209 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.SingleFieldBuilderV3<
-        o3.souse.producer.Payload, o3.souse.producer.Payload.Builder, o3.souse.producer.PayloadOrBuilder> payloadsBuilder_;
     /**
-     * <code>.producer.Payload payloads = 2;</code>
-     * @return Whether the payloads field is set.
+     * <code>bytes blobValue = 2;</code>
+     * @return Whether the blobValue field is set.
      */
-    @java.lang.Override
-    public boolean hasPayloads() {
-      return valueCase_ == 2;
+    public boolean hasBlobValue() {
+      return payloadCase_ == 2;
     }
     /**
-     * <code>.producer.Payload payloads = 2;</code>
-     * @return The payloads.
+     * <code>bytes blobValue = 2;</code>
+     * @return The blobValue.
      */
-    @java.lang.Override
-    public o3.souse.producer.Payload getPayloads() {
-      if (payloadsBuilder_ == null) {
-        if (valueCase_ == 2) {
-          return (o3.souse.producer.Payload) value_;
-        }
-        return o3.souse.producer.Payload.getDefaultInstance();
-      } else {
-        if (valueCase_ == 2) {
-          return payloadsBuilder_.getMessage();
-        }
-        return o3.souse.producer.Payload.getDefaultInstance();
+    public com.google.protobuf.ByteString getBlobValue() {
+      if (payloadCase_ == 2) {
+        return (com.google.protobuf.ByteString) payload_;
       }
+      return com.google.protobuf.ByteString.EMPTY;
     }
     /**
-     * <code>.producer.Payload payloads = 2;</code>
-     */
-    public Builder setPayloads(o3.souse.producer.Payload value) {
-      if (payloadsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        value_ = value;
-        onChanged();
-      } else {
-        payloadsBuilder_.setMessage(value);
-      }
-      valueCase_ = 2;
-      return this;
-    }
-    /**
-     * <code>.producer.Payload payloads = 2;</code>
-     */
-    public Builder setPayloads(
-        o3.souse.producer.Payload.Builder builderForValue) {
-      if (payloadsBuilder_ == null) {
-        value_ = builderForValue.build();
-        onChanged();
-      } else {
-        payloadsBuilder_.setMessage(builderForValue.build());
-      }
-      valueCase_ = 2;
-      return this;
-    }
-    /**
-     * <code>.producer.Payload payloads = 2;</code>
-     */
-    public Builder mergePayloads(o3.souse.producer.Payload value) {
-      if (payloadsBuilder_ == null) {
-        if (valueCase_ == 2 &&
-            value_ != o3.souse.producer.Payload.getDefaultInstance()) {
-          value_ = o3.souse.producer.Payload.newBuilder((o3.souse.producer.Payload) value_)
-              .mergeFrom(value).buildPartial();
-        } else {
-          value_ = value;
-        }
-        onChanged();
-      } else {
-        if (valueCase_ == 2) {
-          payloadsBuilder_.mergeFrom(value);
-        }
-        payloadsBuilder_.setMessage(value);
-      }
-      valueCase_ = 2;
-      return this;
-    }
-    /**
-     * <code>.producer.Payload payloads = 2;</code>
-     */
-    public Builder clearPayloads() {
-      if (payloadsBuilder_ == null) {
-        if (valueCase_ == 2) {
-          valueCase_ = 0;
-          value_ = null;
-          onChanged();
-        }
-      } else {
-        if (valueCase_ == 2) {
-          valueCase_ = 0;
-          value_ = null;
-        }
-        payloadsBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>.producer.Payload payloads = 2;</code>
-     */
-    public o3.souse.producer.Payload.Builder getPayloadsBuilder() {
-      return getPayloadsFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.producer.Payload payloads = 2;</code>
-     */
-    @java.lang.Override
-    public o3.souse.producer.PayloadOrBuilder getPayloadsOrBuilder() {
-      if ((valueCase_ == 2) && (payloadsBuilder_ != null)) {
-        return payloadsBuilder_.getMessageOrBuilder();
-      } else {
-        if (valueCase_ == 2) {
-          return (o3.souse.producer.Payload) value_;
-        }
-        return o3.souse.producer.Payload.getDefaultInstance();
-      }
-    }
-    /**
-     * <code>.producer.Payload payloads = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        o3.souse.producer.Payload, o3.souse.producer.Payload.Builder, o3.souse.producer.PayloadOrBuilder> 
-        getPayloadsFieldBuilder() {
-      if (payloadsBuilder_ == null) {
-        if (!(valueCase_ == 2)) {
-          value_ = o3.souse.producer.Payload.getDefaultInstance();
-        }
-        payloadsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            o3.souse.producer.Payload, o3.souse.producer.Payload.Builder, o3.souse.producer.PayloadOrBuilder>(
-                (o3.souse.producer.Payload) value_,
-                getParentForChildren(),
-                isClean());
-        value_ = null;
-      }
-      valueCase_ = 2;
-      onChanged();;
-      return payloadsBuilder_;
-    }
-
-    /**
-     * <code>bool requested = 3;</code>
-     * @return Whether the requested field is set.
-     */
-    public boolean hasRequested() {
-      return valueCase_ == 3;
-    }
-    /**
-     * <code>bool requested = 3;</code>
-     * @return The requested.
-     */
-    public boolean getRequested() {
-      if (valueCase_ == 3) {
-        return (java.lang.Boolean) value_;
-      }
-      return false;
-    }
-    /**
-     * <code>bool requested = 3;</code>
-     * @param value The requested to set.
+     * <code>bytes blobValue = 2;</code>
+     * @param value The blobValue to set.
      * @return This builder for chaining.
      */
-    public Builder setRequested(boolean value) {
-      valueCase_ = 3;
-      value_ = value;
+    public Builder setBlobValue(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  payloadCase_ = 2;
+      payload_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>bool requested = 3;</code>
+     * <code>bytes blobValue = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearBlobValue() {
+      if (payloadCase_ == 2) {
+        payloadCase_ = 0;
+        payload_ = null;
+        onChanged();
+      }
+      return this;
+    }
+
+    /**
+     * <code>int32 intValue = 3;</code>
+     * @return Whether the intValue field is set.
+     */
+    public boolean hasIntValue() {
+      return payloadCase_ == 3;
+    }
+    /**
+     * <code>int32 intValue = 3;</code>
+     * @return The intValue.
+     */
+    public int getIntValue() {
+      if (payloadCase_ == 3) {
+        return (java.lang.Integer) payload_;
+      }
+      return 0;
+    }
+    /**
+     * <code>int32 intValue = 3;</code>
+     * @param value The intValue to set.
+     * @return This builder for chaining.
+     */
+    public Builder setIntValue(int value) {
+      payloadCase_ = 3;
+      payload_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 intValue = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearIntValue() {
+      if (payloadCase_ == 3) {
+        payloadCase_ = 0;
+        payload_ = null;
+        onChanged();
+      }
+      return this;
+    }
+
+    /**
+     * <code>float fpValue = 4;</code>
+     * @return Whether the fpValue field is set.
+     */
+    public boolean hasFpValue() {
+      return payloadCase_ == 4;
+    }
+    /**
+     * <code>float fpValue = 4;</code>
+     * @return The fpValue.
+     */
+    public float getFpValue() {
+      if (payloadCase_ == 4) {
+        return (java.lang.Float) payload_;
+      }
+      return 0F;
+    }
+    /**
+     * <code>float fpValue = 4;</code>
+     * @param value The fpValue to set.
+     * @return This builder for chaining.
+     */
+    public Builder setFpValue(float value) {
+      payloadCase_ = 4;
+      payload_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>float fpValue = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearFpValue() {
+      if (payloadCase_ == 4) {
+        payloadCase_ = 0;
+        payload_ = null;
+        onChanged();
+      }
+      return this;
+    }
+
+    /**
+     * <code>bool boolValue = 5;</code>
+     * @return Whether the boolValue field is set.
+     */
+    public boolean hasBoolValue() {
+      return payloadCase_ == 5;
+    }
+    /**
+     * <code>bool boolValue = 5;</code>
+     * @return The boolValue.
+     */
+    public boolean getBoolValue() {
+      if (payloadCase_ == 5) {
+        return (java.lang.Boolean) payload_;
+      }
+      return false;
+    }
+    /**
+     * <code>bool boolValue = 5;</code>
+     * @param value The boolValue to set.
+     * @return This builder for chaining.
+     */
+    public Builder setBoolValue(boolean value) {
+      payloadCase_ = 5;
+      payload_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool boolValue = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearBoolValue() {
+      if (payloadCase_ == 5) {
+        payloadCase_ = 0;
+        payload_ = null;
+        onChanged();
+      }
+      return this;
+    }
+
+    /**
+     * <code>bool requested = 6;</code>
+     * @return Whether the requested field is set.
+     */
+    public boolean hasRequested() {
+      return payloadCase_ == 6;
+    }
+    /**
+     * <code>bool requested = 6;</code>
+     * @return The requested.
+     */
+    public boolean getRequested() {
+      if (payloadCase_ == 6) {
+        return (java.lang.Boolean) payload_;
+      }
+      return false;
+    }
+    /**
+     * <code>bool requested = 6;</code>
+     * @param value The requested to set.
+     * @return This builder for chaining.
+     */
+    public Builder setRequested(boolean value) {
+      payloadCase_ = 6;
+      payload_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool requested = 6;</code>
      * @return This builder for chaining.
      */
     public Builder clearRequested() {
-      if (valueCase_ == 3) {
-        valueCase_ = 0;
-        value_ = null;
+      if (payloadCase_ == 6) {
+        payloadCase_ = 0;
+        payload_ = null;
         onChanged();
       }
       return this;

@@ -20,30 +20,59 @@ public interface ResolveMessageOrBuilder extends
       getNameBytes();
 
   /**
-   * <code>.producer.Payload payloads = 2;</code>
-   * @return Whether the payloads field is set.
+   * <code>bytes blobValue = 2;</code>
+   * @return Whether the blobValue field is set.
    */
-  boolean hasPayloads();
+  boolean hasBlobValue();
   /**
-   * <code>.producer.Payload payloads = 2;</code>
-   * @return The payloads.
+   * <code>bytes blobValue = 2;</code>
+   * @return The blobValue.
    */
-  o3.souse.producer.Payload getPayloads();
-  /**
-   * <code>.producer.Payload payloads = 2;</code>
-   */
-  o3.souse.producer.PayloadOrBuilder getPayloadsOrBuilder();
+  com.google.protobuf.ByteString getBlobValue();
 
   /**
-   * <code>bool requested = 3;</code>
+   * <code>int32 intValue = 3;</code>
+   * @return Whether the intValue field is set.
+   */
+  boolean hasIntValue();
+  /**
+   * <code>int32 intValue = 3;</code>
+   * @return The intValue.
+   */
+  int getIntValue();
+
+  /**
+   * <code>float fpValue = 4;</code>
+   * @return Whether the fpValue field is set.
+   */
+  boolean hasFpValue();
+  /**
+   * <code>float fpValue = 4;</code>
+   * @return The fpValue.
+   */
+  float getFpValue();
+
+  /**
+   * <code>bool boolValue = 5;</code>
+   * @return Whether the boolValue field is set.
+   */
+  boolean hasBoolValue();
+  /**
+   * <code>bool boolValue = 5;</code>
+   * @return The boolValue.
+   */
+  boolean getBoolValue();
+
+  /**
+   * <code>bool requested = 6;</code>
    * @return Whether the requested field is set.
    */
   boolean hasRequested();
   /**
-   * <code>bool requested = 3;</code>
+   * <code>bool requested = 6;</code>
    * @return The requested.
    */
   boolean getRequested();
 
-  public o3.souse.producer.ResolveMessage.ValueCase getValueCase();
+  public o3.souse.producer.ResolveMessage.PayloadCase getPayloadCase();
 }

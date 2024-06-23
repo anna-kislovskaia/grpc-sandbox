@@ -12,16 +12,7 @@
 	<properties>
 		<junit.version>5.8.2</junit.version>
 		<mockito.version>2.23.0</mockito.version>
-		<jsr305.version>3.0.1</jsr305.version>
-		<spring.boot.version>2.7.2</spring.boot.version>
-		<reactor.version>3.4.18</reactor.version>
-		<rxjava.version>3.0.0-RC1</rxjava.version>
-		<hazelcast.version>5.1.1</hazelcast.version>
-		<lombok.version>1.18.24</lombok.version>
-		<jackson.version>2.13.3</jackson.version>
-		<swagger.version>3.0.0</swagger.version>
-		<springdoc.version>1.6.9</springdoc.version>
-		<aop.version>1.9.9.1</aop.version>
+		<log4j.version>2.13.0</log4j.version>
 
 	</properties>
 
@@ -54,6 +45,16 @@
 			<artifactId>junit-platform-launcher</artifactId>
 			<version>1.7.0</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
 		</dependency>
 	</dependencies>
 

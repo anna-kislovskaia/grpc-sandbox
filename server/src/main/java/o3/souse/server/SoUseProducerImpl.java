@@ -1,63 +1,39 @@
 package o3.souse.server;
 
 import com.google.protobuf.ByteString;
+import io.grpc.Status;
+import io.grpc.StatusException;
 import io.grpc.stub.StreamObserver;
-import o3.souse.producer.Payload;
 import o3.souse.producer.ResolveMessage;
 import o3.souse.producer.SoUseProducerGrpc;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.*;
 
 public class SoUseProducerImpl extends SoUseProducerGrpc.SoUseProducerImplBase {
-    @Override
-    public void resolve(ResolveMessage request, StreamObserver<ResolveMessage> responseObserver) {
-//        System.out.println("received: " + request);
-        doResolve(request, responseObserver);
-        responseObserver.onCompleted();
-//        System.out.println("completed");
-    }
+    private static final Logger logger = LogManager.getLogger(SoUseProducerImpl.class);
+    private final Map<String, ResolveMessage> parameters = new HashMap<>();
+    private final Set<String> requests = new HashSet<>();
+    private final boolean enableLogging;
 
-    private void doResolve(ResolveMessage request, StreamObserver<ResolveMessage> responseObserver) {
-        for (String name : request.getNamesList()) {
-            switch (name) {
-                case "x" -> {
-                    responseObserver.onNext(createXResponse(request.getRequestId()));
-                }
-                case "y" -> {
-                    Payload payload = request.getPayloads(0);
-                    if (payload.getName().equals("x")) {
-                        responseObserver.onNext(createYResponse(request.getRequestId()));
-                    }
-                }
-            }
-        }
-
-    }
-
-    private ResolveMessage createXResponse(String requestId) {
-        return ResolveMessage.newBuilder()
-                .setRequestId(requestId)
-                .addPayloads(Payload.newBuilder()
-                        .setName("x")
-                        .setBody(ByteString.copyFromUtf8("true"))
-                        .build())
-                .build();
-    }
-
-    private ResolveMessage createYResponse(String requestId) {
-        return ResolveMessage.newBuilder()
-                .setRequestId(requestId)
-                .addPayloads(Payload.newBuilder()
-                        .setName("y")
-                        .setBody(ByteString.copyFromUtf8("this is Y"))
-                        .build())
-                .build();
+    public SoUseProducerImpl(boolean enableLogging) {
+        this.enableLogging = enableLogging;
     }
 
     @Override
     public StreamObserver<ResolveMessage> resolveStream(StreamObserver<ResolveMessage> responseObserver) {
         return new StreamObserver<>() {
             @Override
-            public void onNext(ResolveMessage ResolveMessage) {
-                doResolve(ResolveMessage, responseObserver);
+            public void onNext(ResolveMessage msg) {
+                if (msg.hasRequested()) {
+                    requests.add(msg.getName());
+                } else {
+                    parameters.put(msg.getName(), msg);
+                }
+                if (enableLogging) {
+                    logger.info("received {} {}", (msg.hasRequested() ? "request for " : "parameter "), msg.getName());
+                }
             }
 
             @Override
@@ -67,25 +43,35 @@ public class SoUseProducerImpl extends SoUseProducerGrpc.SoUseProducerImplBase {
 
             @Override
             public void onCompleted() {
-               // responseObserver.onCompleted();
+                for (String requested : requests) {
+                    switch (requested) {
+                        case "x" -> {
+                            responseObserver.onNext(createResponse("x", "This is X"));
+                        }
+                        case "y" -> {
+                            ResolveMessage x = parameters.get("x");
+                            if (x == null || !x.hasBlobValue()) {
+                                responseObserver.onError(new StatusException(Status.INVALID_ARGUMENT));
+                            } else {
+                                var value = x.getBlobValue().toStringUtf8();
+                                responseObserver.onNext(createResponse("y", "This is Y for " + value));
+                            }
+                        }
+
+                    }
+                }
+                responseObserver.onCompleted();
             }
         };
     }
 
-    public static ResolveMessage createXRequest(int i) {
+    private ResolveMessage createResponse(String name, String text) {
         return ResolveMessage.newBuilder()
-                .setRequestId(String.valueOf(i))
-                .addNames("x")
+                .setName(name)
+                .setBlobValue(ByteString.copyFromUtf8(text))
                 .build();
     }
 
-    public static ResolveMessage createYRequest(ResolveMessage responseX) {
-        return ResolveMessage.newBuilder()
-                .addNames("y")
-                .setRequestId(responseX.getRequestId())
-                .addPayloads(responseX.getPayloads(0))
-                .build();
-    }
 }
 
 
