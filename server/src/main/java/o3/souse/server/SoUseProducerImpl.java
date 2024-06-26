@@ -15,11 +15,6 @@ public class SoUseProducerImpl extends SoUseProducerGrpc.SoUseProducerImplBase {
     private static final Logger logger = LogManager.getLogger(SoUseProducerImpl.class);
     private final Map<String, ResolveMessage> parameters = new HashMap<>();
     private final Set<String> requests = new HashSet<>();
-    private final boolean enableLogging;
-
-    public SoUseProducerImpl(boolean enableLogging) {
-        this.enableLogging = enableLogging;
-    }
 
     @Override
     public StreamObserver<ResolveMessage> resolveStream(StreamObserver<ResolveMessage> responseObserver) {
@@ -31,9 +26,8 @@ public class SoUseProducerImpl extends SoUseProducerGrpc.SoUseProducerImplBase {
                 } else {
                     parameters.put(msg.getName(), msg);
                 }
-                if (enableLogging) {
-                    logger.info("received {} {}", (msg.hasRequested() ? "request for " : "parameter "), msg.getName());
-                }
+
+                logger.info("received {} {}", (msg.hasRequested() ? "request for " : "parameter "), msg.getName());
             }
 
             @Override
