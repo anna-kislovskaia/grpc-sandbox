@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProducerStreamApplication {
     private static final Logger logger = LogManager.getLogger(ProducerStreamApplication.class);
@@ -17,12 +18,14 @@ public class ProducerStreamApplication {
     private static final int count = 3;
 
     public static void main(String[] args) {
-        Server serverX = startServer(port_1).join();
-        Server serverY = startServer(port_2).join();
+        Server producerX = startProducer(port_1).join();
+        Server producerY = startProducer(port_2).join();
 
         ManagedChannel xChannel = createChannel(port_1);
         ManagedChannel yChannel = createChannel(port_2);
 
+        long start = System.currentTimeMillis();
+        AtomicInteger resultCounter = new AtomicInteger();
         for (int i = 0; i < count; i++) {
             var sample = i + 1;
             ProducerCall xCall = new ProducerCall(sample + "X", xChannel);
@@ -44,14 +47,20 @@ public class ProducerStreamApplication {
 
             yCall.getResponse().thenAccept(msg -> {
                 logger.info("{} Y response:\n{}", sample, msg);
+
+                // shut down if completed
+                if (resultCounter.incrementAndGet() == count) {
+                    logger.warn("Test completed in {} millis. Shutting down", System.currentTimeMillis() - start);
+
+                    producerX.shutdown();
+                    producerY.shutdown();
+                }
             });
         }
 
-//        serverX.shutdown();
-//        serverY.shutdown();
     }
 
-    public static CompletableFuture<Server> startServer(int port) {
+    public static CompletableFuture<Server> startProducer(int port) {
         Server server = ServerBuilder
                 .forPort(port)
                 .addService(new SoUseProducerImpl()).build();
