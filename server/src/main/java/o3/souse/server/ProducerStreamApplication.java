@@ -8,7 +8,7 @@ import o3.souse.producer.ResolveMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CompletableFuture;
 
 public class ProducerStreamApplication {
     private static final Logger logger = LogManager.getLogger(ProducerStreamApplication.class);
@@ -16,11 +16,9 @@ public class ProducerStreamApplication {
     private static final int port_2 = 8082;
     private static final int count = 3;
 
-    public static void main(String[] args) throws InterruptedException {
-        CountDownLatch latch = new CountDownLatch(2);
-        Server serverX = startServer(port_1, latch);
-        Server serverY = startServer(port_2, latch);
-        latch.await();
+    public static void main(String[] args) {
+        Server serverX = startServer(port_1).join();
+        Server serverY = startServer(port_2).join();
 
         ManagedChannel xChannel = createChannel(port_1);
         ManagedChannel yChannel = createChannel(port_2);
@@ -53,22 +51,23 @@ public class ProducerStreamApplication {
 //        serverY.shutdown();
     }
 
-    public static Server startServer(int port, CountDownLatch latch) {
+    public static CompletableFuture<Server> startServer(int port) {
         Server server = ServerBuilder
                 .forPort(port)
                 .addService(new SoUseProducerImpl()).build();
+        CompletableFuture<Server> promise = new CompletableFuture<>();
 
         Thread thread = new Thread(() -> {
             try {
                 server.start();
-                latch.countDown();
+                promise.complete(server);
                 server.awaitTermination();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
         thread.start();
-        return server;
+        return promise;
     }
 
     public static ManagedChannel createChannel(int port) {
